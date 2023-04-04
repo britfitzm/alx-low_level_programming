@@ -4,29 +4,25 @@
 #include <string.h>
 
 /**
- * pop_listint - deletes head node from linked list
- * @head: head of linked list
- * @n: integer
- * Return: 0 if empty linked list
+ * pop_listint - deletes head node of linked list
+ * @head: pointer to first element in linked list
+ * Return: data inside elements that was deleted,
+ * or 0 if list is empty
  */
 
 int pop_listint(listint_t **head)
 
 {
-	listint_t *new_node = malloc(sizeof(listint_t));
-	int n;
+	listint_t *temp;
+	int s;
 
-	if (head == NULL)
-	{
+	if (!head || *head)
 		return (0);
-	}
 
-	*new_node = (*head)->next;
-	n = (*head)->n;
-
+	s = (*head)->n;
+	temp = (*head)->next;
 	free(*head);
+	*head = temp;
 
-	*head = new_node;
-
-	return n;
+	return (s);
 }
